@@ -23,10 +23,12 @@ include 'general.php';
 
 //echo check_login($con, $uname, $pwd);
 
+// TODO - only allow checks for currently logged in player
 if (($key === "planets_apiOIndfuih093hdasjkhasdlyUIYfasdfwpx1984932ndmk98cnlape") && (check_login($con, $uname, $pwd, false) === "0"))
 {
+    // error code 0 - no errors (stupid)
     echo "0";
-
+    //You can either retrive the id of planets owned by player by passing "0" or the entire planet data "1"
     if ($type === "0")
     {
         calculate_resource_production($con, $data);

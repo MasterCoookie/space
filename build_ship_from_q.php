@@ -18,6 +18,7 @@ $job_id = sanitizeNum($_POST['job_id']);
 
 if ($uname === "lkjasdIU832jnv99SDIJF0asdk1AKJ0ojsdYDSJ01" && $pwd === '4nzxm285ngyuHDK93jG783kjmxc0plqa1zXc')
 {
+    // builds ship and adds another queued job if there more ships in queue
     include 'general.php';
     build_ship_from_design($con, $job_id);
     if (get_shipyard_q($con, $job_id)[0] != 0)

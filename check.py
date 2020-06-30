@@ -44,9 +44,12 @@ def async_job(job_delay, job_id, job_type):
     print("Job Ended, id:", job_id)
 
 while 1:
+    # checking for queued jobs
     REQ = requests.post("https://game.czerny.iq.pl/rasberry_get_q.php",
                         data={'uname': 'HasUABSDBFUI324N32857JASDFasdf',
                               'pwd': 'JKHASGDbnsdf74oxmniwqe84ho98sfcfbnjkalsd'})
+
+    # for debugging:
     # print(req.status_code, req.reason)
     RES = REQ.text
     if RES == "NO JOBS":
@@ -58,7 +61,7 @@ while 1:
         DELAY = int(RES[3])
         Thread(target=async_job, args=(DELAY, RES[2], RES[1])).start()
 
-        # remove job from q after scheduling it
+        # remove job from q after preparing it
         REQ_REMOVE = requests.post("https://game.czerny.iq.pl/rasberry_remove_q.php",
                                    data={'uname': 'jhq3485jjrng980masligUSF83rmnzmdsa',
                                          'pwd': 'USdbzxfasdfn83ldg380fnh327yfoenc73o0cnJ',

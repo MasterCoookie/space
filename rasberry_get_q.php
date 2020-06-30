@@ -20,6 +20,7 @@ if ($uname === "HasUABSDBFUI324N32857JASDFasdf" && $pwd === 'JKHASGDbnsdf74oxmni
 {
     include 'general.php';
 
+    // check for jobs schedulet for 9 or less secs from now
     $job = check_scheduled_jobs($con, 9);
     if ($job === 0)
     {
