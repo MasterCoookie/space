@@ -54,7 +54,7 @@ function create_planet($con, $firsplanet)
         terro_state: int: - lvl of terraformation
         fields_data: string - representation of lvls of buildings built on planet
         localization: string: - system:position_from_sun (ex. 110:2)
-        fleets_ids: string - TODO
+        fleet_id: local fleet id only this fleet will fight in defensive combat
         defence_id: int - id of in defences table
         energy: int - current energy produced on given planet
         building_materials, special_materials, reg_fuel, hyper_fuel: ints - all represent amounts of resources
@@ -71,7 +71,7 @@ function create_planet($con, $firsplanet)
 
     if ($firsplanet)
     {
-        $createplanetquery = "INSERT INTO planets (planet_type, fields_data, localization, fleets_ids,
+        $createplanetquery = "INSERT INTO planets (planet_type, fields_data, localization, fleet_id,
                                                 building_materials, special_materials, reg_fuel) VALUES
                                                 (0, 'S0, L0, 0, e0, b0, s0, F0, f0, 0, 0, 0, 0',
                                                 '".$random_localization."', '0, 0, 0, 0', 250, 100, 75);";    
