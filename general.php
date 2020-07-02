@@ -372,7 +372,17 @@ function check_scheduled_jobs($con, $time_to_run)
 
 function create_ship_design($con, $player_id, $design_name, $type, $design_data, $count)
 {
-    //create new ship desingn
+    /*create new ship desingn
+        id: int - as alaways
+        owner: int - so it can realte to players table
+        design_count: int - very important, represents not only how many designs of this type the player has created,
+        but also index in array in col of given class in fleets table (see docs in get_ship_design_data())
+        design_name: string - name given by player
+        hangar_cap: int - how many units can a ship contain
+        drive_type: int - numerical representation of drive type
+        drive_lvl: int TODO - replace with unit size
+        aair_lvl, aair_count and so on: ints - pairs levels and counts of given weapons
+    */
     $design_query = "INSERT INTO ship_designs VALUES (null, ".$player_id.", ".$count.", '".$design_name."', '".$type."', ".$design_data[0].", ".$design_data[1].", ".$design_data[2].", ".$design_data[3]."
     , ".$design_data[4].", ".$design_data[5].", ".$design_data[6].", ".$design_data[7].", ".$design_data[8].");";
 
@@ -446,11 +456,11 @@ function add_shipyard_q($con, $planet_id, $ship_count, $ship_type)
 
 function calculate_ship_build_time($con, $planet_id, $ship_type)
 {
-    // calculates building based on type. Value is set for basic types
+    // calculates building time based on type. Value is set for basic types
     $shipyard_lvl = get_building_lvl($con, $planet_id, 0, false);
     if ($ship_type < 11)
     {
-        // TODO - calc build time
+        // TODO - actually calc build time
         return (60 / $shipyard_lvl) * $ship_type / 2;
     }
     else
