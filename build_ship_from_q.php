@@ -1,6 +1,6 @@
 <?php
 include 'dbconnect.php';
-
+// test 2
 $con = mysqli_connect($servername, $dbuser, $dbpass, $dbname);
 
 if (mysqli_connect_errno())
